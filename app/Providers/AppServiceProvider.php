@@ -30,6 +30,11 @@ class AppServiceProvider extends ServiceProvider
     {
         // $this->registerPolicies();
 
+        // Force HTTPS in production
+        if (app()->environment('production') || env('FORCE_HTTPS', false)) {
+            \URL::forceScheme('https');
+        }
+
         // Removed custom Livewire routes to avoid route name conflicts
         // Livewire will use default routes: /livewire/update and /livewire/livewire.js
 
