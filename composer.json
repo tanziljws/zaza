@@ -46,10 +46,6 @@
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
         ],
-        "pre-install-cmd": [
-            "@php -r \"if (function_exists('dl') && !extension_loaded('gd')) { dl('gd.so'); }\" || true",
-            "@php -r \"if (function_exists('dl') && !extension_loaded('bcmath')) { dl('bcmath.so'); }\" || true"
-        ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
         ],
