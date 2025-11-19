@@ -1,6 +1,9 @@
-[phases.extensions]
-cmds = ["install-php-extensions ctype curl dom fileinfo filter hash mbstring openssl pcre pdo session tokenizer xml pdo_mysql redis gd bcmath"]
+# Railpack configuration
+# Note: Railpack auto-detects Laravel and installs extensions automatically
+# To add gd and bcmath, set environment variable in Railway dashboard:
+# PHP_EXTENSIONS=ctype,curl,dom,fileinfo,filter,hash,mbstring,openssl,pcre,pdo,session,tokenizer,xml,pdo_mysql,redis,gd,bcmath
 
-[phases.install]
-cmds = ["composer install --optimize-autoloader --no-scripts --no-interaction --ignore-platform-req=ext-gd --ignore-platform-req=ext-bcmath"]
+[build]
+# Composer will ignore platform requirements for gd and bcmath
+composer_flags = ["--optimize-autoloader", "--no-scripts", "--no-interaction", "--ignore-platform-req=ext-gd", "--ignore-platform-req=ext-bcmath"]
 
