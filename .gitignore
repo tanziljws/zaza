@@ -5,6 +5,15 @@
 /public/storage
 /storage/*.key
 /storage/pail
+# Don't ignore storage/app/public subdirectories with content
+!/storage/app/public/ckeditor
+!/storage/app/public/ckeditor/**
+!/storage/app/public/foto
+!/storage/app/public/foto/**
+!/storage/app/public/major
+!/storage/app/public/major/**
+!/storage/app/public/ui-config
+!/storage/app/public/ui-config/**
 /vendor
 .env
 .env.backup
