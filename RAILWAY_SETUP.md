@@ -2,22 +2,22 @@
 
 ## PHP Extensions Configuration
 
-Railpack secara otomatis mendeteksi Laravel, tetapi tidak menginstall semua extensions yang diperlukan. Untuk menambahkan extensions `gd` dan `bcmath`, tambahkan environment variable berikut di Railway Dashboard:
+Railpack secara otomatis mendeteksi Laravel, tetapi tidak menginstall semua extensions yang diperlukan. Untuk menambahkan extensions `gd`, `bcmath`, dan `zip`, tambahkan environment variable berikut di Railway Dashboard:
 
 ### Environment Variable
 
 Di Railway Dashboard → Service → Variables, tambahkan:
 
 ```
-PHP_EXTENSIONS=ctype,curl,dom,fileinfo,filter,hash,mbstring,openssl,pcre,pdo,session,tokenizer,xml,pdo_mysql,redis,gd,bcmath
+PHP_EXTENSIONS=ctype,curl,dom,fileinfo,filter,hash,mbstring,openssl,pcre,pdo,session,tokenizer,xml,pdo_mysql,redis,gd,bcmath,zip
 ```
 
 ### Alternatif: Composer Ignore Platform Requirements
 
-Jika tidak bisa menambahkan environment variable, `composer.json` sudah dikonfigurasi untuk mengabaikan platform requirements untuk `ext-gd` dan `ext-bcmath`:
+Jika tidak bisa menambahkan environment variable, `composer.json` sudah dikonfigurasi untuk mengabaikan platform requirements untuk `ext-gd`, `ext-bcmath`, dan `ext-zip`:
 
 - `platform-check: false` - Mengabaikan pengecekan platform
-- `--ignore-platform-req=ext-gd --ignore-platform-req=ext-bcmath` - Mengabaikan requirement extensions
+- `--ignore-platform-req=ext-gd --ignore-platform-req=ext-bcmath --ignore-platform-req=ext-zip` - Mengabaikan requirement extensions
 
 Composer akan tetap berjalan meskipun extensions tidak terinstall, tetapi aplikasi mungkin error saat runtime jika extensions benar-benar diperlukan.
 

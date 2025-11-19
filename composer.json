@@ -78,7 +78,8 @@
         "platform": {
             "php": "8.2.29",
             "ext-gd": "0",
-            "ext-bcmath": "0"
+            "ext-bcmath": "0",
+            "ext-zip": "0"
         },
         "platform-check": false
     },
