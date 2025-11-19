@@ -4,13 +4,14 @@
 
 Railpack secara otomatis mendeteksi Laravel, tetapi tidak menginstall semua extensions yang diperlukan. Untuk menambahkan extensions `gd`, `bcmath`, dan `zip`, tambahkan environment variable berikut di Railway Dashboard:
 
-### Environment Variable
+### Environment Variable (SOLUSI UTAMA)
 
 Di Railway Dashboard → Service → Variables, tambahkan:
 
-```
-PHP_EXTENSIONS=ctype,curl,dom,fileinfo,filter,hash,mbstring,openssl,pcre,pdo,session,tokenizer,xml,pdo_mysql,redis,gd,bcmath,zip
-```
+**Variable Name:** `RAILPACK_PHP_EXTENSIONS`  
+**Variable Value:** `gd,bcmath,zip`
+
+**Catatan:** Railpack akan otomatis menginstall extensions default (ctype, curl, dom, fileinfo, filter, hash, mbstring, openssl, pcre, pdo, session, tokenizer, xml, pdo_mysql, redis), jadi Anda hanya perlu menambahkan extensions tambahan: `gd`, `bcmath`, dan `zip`.
 
 ### Alternatif: Composer Ignore Platform Requirements
 
