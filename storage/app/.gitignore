@@ -1,4 +1,12 @@
 *
 !private/
 !public/
+!public/ckeditor/
+!public/ckeditor/**
+!public/foto/
+!public/foto/**
+!public/major/
+!public/major/**
+!public/ui-config/
+!public/ui-config/**
 !.gitignore
