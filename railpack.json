@@ -1,0 +1,31 @@
+{
+  "php_extensions": [
+    "ctype",
+    "curl",
+    "dom",
+    "fileinfo",
+    "filter",
+    "hash",
+    "mbstring",
+    "openssl",
+    "pcre",
+    "pdo",
+    "session",
+    "tokenizer",
+    "xml",
+    "pdo_mysql",
+    "redis",
+    "gd",
+    "bcmath"
+  ],
+  "composer": {
+    "install_flags": [
+      "--optimize-autoloader",
+      "--no-scripts",
+      "--no-interaction",
+      "--ignore-platform-req=ext-gd",
+      "--ignore-platform-req=ext-bcmath"
+    ]
+  }
+}
+
