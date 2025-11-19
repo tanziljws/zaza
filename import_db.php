@@ -1,6 +1,6 @@
 <?php
 
-$host = '66.33.22.244'; // shortline.proxy.rlwy.net
+$host = 'shortline.proxy.rlwy.net';
 $port = 26377;
 $username = 'root';
 $password = 'dCZeRwjqQkaBCLngKYHrEJWhxRIRkEzm';
