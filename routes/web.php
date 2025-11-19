@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 Route::get('/unauthorized', function () {
     return view('error.401');
@@ -9,26 +11,41 @@ Route::get('/unauthorized', function () {
 // Serve storage files if symlink doesn't work (fallback route)
 // This route will only be hit if the file doesn't exist in public/storage symlink
 Route::get('/storage/{path}', function ($path) {
-    $filePath = storage_path('app/public/' . $path);
+    // Remove any leading slashes
+    $path = ltrim($path, '/');
     
     // Security: prevent directory traversal
+    if (str_contains($path, '..')) {
+        abort(404);
+    }
+    
+    $filePath = storage_path('app/public/' . $path);
+    
+    // Get real paths for security check
     $realPath = realpath($filePath);
     $realStoragePath = realpath(storage_path('app/public'));
     
-    if (!$realPath || strpos($realPath, $realStoragePath) !== 0) {
+    // Security: ensure file is within storage/app/public directory
+    if (!$realPath || !$realStoragePath || strpos($realPath, $realStoragePath) !== 0) {
         abort(404);
     }
     
-    if (!File::exists($filePath)) {
+    if (!File::exists($filePath) || !File::isFile($filePath)) {
         abort(404);
     }
     
-    $file = File::get($filePath);
-    $type = File::mimeType($filePath);
-    
-    return response($file, 200)
-        ->header('Content-Type', $type)
-        ->header('Content-Length', File::size($filePath));
+    try {
+        $file = File::get($filePath);
+        $type = File::mimeType($filePath) ?: 'application/octet-stream';
+        $size = File::size($filePath);
+        
+        return response($file, 200)
+            ->header('Content-Type', $type)
+            ->header('Content-Length', $size)
+            ->header('Cache-Control', 'public, max-age=31536000');
+    } catch (\Exception $e) {
+        abort(404);
+    }
 })->where('path', '.*');
 
 
