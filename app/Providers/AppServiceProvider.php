@@ -30,13 +30,8 @@ class AppServiceProvider extends ServiceProvider
     {
         // $this->registerPolicies();
 
-         Livewire::setUpdateRoute(function ($handle) {
-            return \Illuminate\Support\Facades\Route::post('/test/livewire/update', $handle);
-        });
-
-        Livewire::setScriptRoute(function ($handle) {
-            return \Illuminate\Support\Facades\Route::get('/test/livewire/livewire.js', $handle);
-        });
+        // Removed custom Livewire routes to avoid route name conflicts
+        // Livewire will use default routes: /livewire/update and /livewire/livewire.js
 
         ResetPassword::createUrlUsing(function ($notifiable, string $token) {
         
