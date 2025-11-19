@@ -12,6 +12,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        // Trust all proxies (Railway uses proxies)
+        $middleware->trustProxies(at: '*');
+        
         // Alias middleware (contoh: spatie/permission)
         $middleware->alias([
             'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,

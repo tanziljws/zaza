@@ -30,8 +30,11 @@ class AppServiceProvider extends ServiceProvider
     {
         // $this->registerPolicies();
 
-        // Force HTTPS in production
-        if (app()->environment('production') || env('FORCE_HTTPS', false)) {
+        // Force HTTPS in production or when behind proxy (Railway)
+        if (app()->environment('production') || 
+            request()->header('X-Forwarded-Proto') === 'https' ||
+            request()->secure() ||
+            env('FORCE_HTTPS', false)) {
             \URL::forceScheme('https');
         }
 
