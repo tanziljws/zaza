@@ -1,9 +1,0 @@
-# Railway configuration
-# This file tells Railway to use Railpack and install required PHP extensions
-
-[build]
-builder = "railpack"
-
-[php]
-extensions = ["ctype", "curl", "dom", "fileinfo", "filter", "hash", "mbstring", "openssl", "pcre", "pdo", "session", "tokenizer", "xml", "pdo_mysql", "redis", "gd", "bcmath"]
-

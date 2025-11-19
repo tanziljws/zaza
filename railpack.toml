@@ -1,0 +1,6 @@
+[build]
+php_extensions = ["ctype", "curl", "dom", "fileinfo", "filter", "hash", "mbstring", "openssl", "pcre", "pdo", "session", "tokenizer", "xml", "pdo_mysql", "redis", "gd", "bcmath"]
+
+[build.composer]
+install_flags = ["--optimize-autoloader", "--no-interaction", "--ignore-platform-req=ext-gd", "--ignore-platform-req=ext-bcmath"]
+
