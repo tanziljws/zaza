@@ -15,7 +15,7 @@ Route::get('/storage/{path}', function ($path) {
     $path = ltrim($path, '/');
     
     // Security: prevent directory traversal
-    if (str_contains($path, '..')) {
+    if (str_contains($path, '..') || str_contains($path, "\0")) {
         abort(404);
     }
     
@@ -42,8 +42,13 @@ Route::get('/storage/{path}', function ($path) {
         return response($file, 200)
             ->header('Content-Type', $type)
             ->header('Content-Length', $size)
-            ->header('Cache-Control', 'public, max-age=31536000');
+            ->header('Cache-Control', 'public, max-age=31536000')
+            ->header('Accept-Ranges', 'bytes');
     } catch (\Exception $e) {
+        \Log::error('Storage route error: ' . $e->getMessage(), [
+            'path' => $path,
+            'filePath' => $filePath
+        ]);
         abort(404);
     }
 })->where('path', '.*');
