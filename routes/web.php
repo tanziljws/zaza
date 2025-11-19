@@ -50,8 +50,9 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     }
 });
 
-
-
+Route::fallback(function (Request $request) {
+    return response()->view('errors.404', [], 404);
+});
 
 
 
