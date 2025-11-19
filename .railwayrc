@@ -1,0 +1,2 @@
+# Railway configuration
+PHP_EXTENSIONS=ctype,curl,dom,fileinfo,filter,hash,mbstring,openssl,pcre,pdo,session,tokenizer,xml,pdo_mysql,redis,gd,bcmath
